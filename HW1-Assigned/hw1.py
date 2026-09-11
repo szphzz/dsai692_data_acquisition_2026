@@ -4,10 +4,7 @@ import re
 import pandas as pd
 import streamlit as st
 
-from google.cloud import storage
-
 from user_definition import GCP_BUCKET_NAME, GCP_FILE_NAME
-
 
 def retrieve_data_from_gcs(bucket_name: str,
                            file_name: str
@@ -33,6 +30,7 @@ def retrieve_data_from_gcs(bucket_name: str,
     bucket = client.bucket(bucket_name)
     file = bucket.blob(file_name)
     data = file.download_as_bytes()
+    # return json.load(data)
     return json.loads(data)
 
 
