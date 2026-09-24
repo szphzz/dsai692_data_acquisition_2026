@@ -14,10 +14,13 @@ class Item(BaseModel):
     instock_qt: int
 
 
-class ItemResponse(BaseModel):
-    total_worth: float
+class ItemResponse(BaseModel):  # added to control response
+    total_worth: float  # only this will return
+    # anything here must be included in return below
 
 
-@app.post("/add_items/")
+@app.post("/add_items/", response_model=ItemResponse)
 def create_item(item: Item):
-    # TODO: COMPLETE THIS
+    items[item.name] = item
+    total_worth = item.instock_qt * item.price
+    return {"total_worth": total_worth}  # anything else that is not in ItemResponse will not throw an error

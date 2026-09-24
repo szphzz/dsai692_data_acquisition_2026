@@ -10,7 +10,7 @@ def retrieve_data_from_gcs(bucket_name: str,
                            file_name: str
                            ) -> dict:
     """
-    TODO: Retrieve file, called `file_name` from `bucket_name`
+    Retrieve file, called `file_name` from `bucket_name`
         and returns a dictionary including "results",
         "job_title", and "company_dict"
 
@@ -38,7 +38,6 @@ def summarize_distribution(df: pd.DataFrame,
                            column_name: str,
                            top_n: int = 10) -> dict:
     """
-    TODO:
     df[column_name] has a list per row (e.g. skills per job).
     Explode using pandas .explode() from a list into individual items first,
     then count how many rows each item appears in across the whole column.

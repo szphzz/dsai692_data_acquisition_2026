@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+# Pydantic is used to set types
 
 # 1. Create a FastAPI App Instance
 app = FastAPI()
@@ -8,7 +9,7 @@ items = {}  # In-memory database
 
 
 class Item(BaseModel):
-    # 3. Define Pydantic Model
+    # 3. Define Pydantic Model, all three fields are required (optional when set = default)
     name: str
     price: float
     instock_qt: int
