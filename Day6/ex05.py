@@ -19,7 +19,8 @@ def sync_call():
 @app.get("/async")
 async def async_call():
     async with httpx.AsyncClient() as client:
-        response1 = await client.get(url)
-        response2 = await client.get(url)
+            task1 = client.get(url)
+            task2 = client.get(url)
+            response1, response2 = await asyncio.gather(task1, task2)
     return {"first": response1.json(),
             "second": response2.json()}

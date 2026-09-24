@@ -1,13 +1,14 @@
-# Use continuumio/miniconda3 as a base image 
-
-# Set /Day6 as a working directory
-
-# Copy environment.yml
+# Use python:3.13-slim as a base image 
 
 
-# create an environment using environment.yml
+# Set /Day8 as a working directory in the container
 
-# install fastapi[standard] for fastapi's cli on the environment
+
+# Copy everything in the working directory to /Day8 in the container
+
+
+# Install packages and libraries
+
 
 # expose port 8000
 

@@ -1,1 +1,0 @@
-0 0 * * * wget http://api-server:8000/retrieve_and_store?url=https://data.sfgov.org/resource/wg3w-h783 >> /var/log/cron.log 2>&1

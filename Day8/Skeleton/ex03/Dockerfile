@@ -1,11 +1,13 @@
-# Use continuumio/miniconda3 as a base image 
+# Use python:3.13-slim as a base image 
 
-# Set /Day6 as a working directory
+# Set /Day8 as a working directory
 
 # Copy environment.yml
 
-# create an environment using environment.yml
 
-# expose port 8502
+# Install libraries and packages
 
-# Run streamlit 
+# expose port 8501
+
+
+#Run streamlit application

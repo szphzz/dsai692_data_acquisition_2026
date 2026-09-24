@@ -8,9 +8,12 @@ from fastapi import HTTPException
 from fastapi import FastAPI
 from google.oauth2 import service_account
 from google.cloud import storage
+from pydantic import BaseModel
 
 app = FastAPI()
 
+class DataGovInput(BaseModel):
+    url : str
 
 def store_to_gcs(service_account_key: str,
                  project_id: str,
@@ -32,9 +35,9 @@ def get_json_response(url: str, api_key: str):
     return response.json()
 
 
-@app.get("/retrieve_and_store")
-def retrieve_and_store(url: str):
-    # # load_dotenv(dotenv_path="/tmp_vol/.env")
+@app.post("/retrieve_and_store")
+def retrieve_and_store(input: DataGovInput):
+    url = input.url
     data_gov_api_key = os.getenv("DATA_GOV_API_KEY")
     service_account_key = os.getenv("GCP_SERVICE_ACCOUNT_KEY")
     project_id = os.getenv("GCP_PROJECT_ID")
