@@ -20,7 +20,7 @@ def read_item_w_path_param(item_id: int):
 @app.post("/items/")  # changed to post
 def read_item_w_query_param(item_id: int | None = None, ct: int = 0):
     """
-    This will return item_id with its corresponding ct. - this should work but it doesn't
+    This will return item_id with its corresponding ct.
     """
     return {"item_id": item_id, "count": ct}
 

@@ -16,7 +16,7 @@ class Item(BaseModel):
 
 class ItemResponse(BaseModel):  # added to control response
     total_worth: float  # only this will return
-    # anything here must be included in return below
+    # anything here must be included in return below, otherwise error i think
 
 
 @app.post("/add_items/", response_model=ItemResponse)

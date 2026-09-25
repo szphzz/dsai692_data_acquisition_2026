@@ -1,4 +1,5 @@
-from fastapi import FastAPIMicroservices and Containerization (Concept)
+from fastapi import FastAPI
+# Microservices and Containerization (Concept)
 import requests
  
 
@@ -61,7 +62,7 @@ def add_item(product: Product):
     if id in items.keys():
         raise HTTPException(status_code=404,detail="id already exists")
     
-    for item in  items.values():
+    for item in items.values():
         item.name.lower() == product_name.lower() or item.id == product_id
         raise HTTPException(status_code=404,detail="id already exists")
     items[product_id] = product
@@ -91,9 +92,9 @@ def check_item_price(name:str):
 
 import requests
 url = "http://127.0.0.1:8000"
-response = requests.get(url+"/check_price_by_name", params = {"name:pencil"})
+response = requests.get(url+"/check_price_by_name", params = {"name":"pencil"})
 
-response.statuss_code #output would be 404
+response.status_code #output would be 404
 
 response.content #b'{"detail":Item not Found"}'
 
@@ -111,7 +112,7 @@ response.status_code #output 404
 
 
 url = "https://127.0.0.1:8000"
-response = requests.get(url+"/check_price_by_name", params = {"name:pencil"})
+response = requests.get(url+"/check_price_by_name", params = {"name":"pencil"})
 
 
 ##11:13 AM REVIEW WHAT WE JUST DID ^^^^^^ IN STEP 4  and check how the output changes when u fuck with the return statement in step 4
@@ -125,7 +126,7 @@ response = requests.get(url+"/check_price_by_name", params = {"name:pencil"})
 
 @app.get("/async_product_search"):
 async def async_product_search(products: list):
-        await product_search_api(products) #assume product_search_ is imported # this is different thean the class example because we aren't using an httpx url asyncrhonously 
+        await product_search_api(products) #assume product_search_api is imported # this is different than the class example because we aren't using an httpx url asynchronously 
 
 
 
@@ -146,8 +147,8 @@ async def async_product_search(products: list):
 
 #we're looking at the fastapi folder extract_save_data.py
 #creating a input/base model if she doesn't prove it
-#def call_google_Search, she made this function to understand how to use differrent libraries to correctly call data idk if this is relevant to to Q2
-#11:48 she didn't post the answers to hw4 2 and we just doing that rn
+#def call_google_Search, she made this function to understand how to use differrent libraries to correctly call data idk if this is relevant to Q2
+#11:48 she didn't post the answers to hw2 and we just doing that rn
 #wants us to think about raise HTTPException under call_google_search -> this seems likely it might be on quiz
 # just focus on creating the route and how to call it and shaping the input/output model 
 
