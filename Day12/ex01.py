@@ -13,10 +13,10 @@ with sync_playwright() as p:
     page.goto("https://medium.com/tag/artificial-intelligence")
 
     print(page.title())  # Returns the page's title.
-    page.wait_for_selector("main")  # Wait Until the <main> appears
+    page.wait_for_selector("article")  # Wait Until the <main> appears
 
     article = page.query_selector("article")  # Return a single <article>
     print(article.inner_text())
 
     for elem in page.query_selector_all("article"):  # Return all <article>
-        print(elem.inner_text())
+        print(elem.inner_text(), end="\n------\n")

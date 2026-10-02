@@ -14,6 +14,8 @@ with sync_playwright() as p:
     page.locator("#login-username").click()
     page.keyboard.insert_text("student@usfca.edu")
     page.keyboard.press("Tab")
+    time.sleep(1)
+    page.keyboard.press("Tab")
     page.keyboard.insert_text("p@ssW0rld")
 
     time.sleep(10)
