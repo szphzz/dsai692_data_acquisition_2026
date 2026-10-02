@@ -10,27 +10,27 @@
 # =====================================================================
 
 # TODO 1: your GCP_PROJECT_ID.
-PROJECT_ID=""
+PROJECT_ID="dsai692-szphzz"
 
 # TODO 2: the region to deploy into, e.g. "us-west1". 
 # Cloud Run and Cloud Scheduler must be in the same region.
-REGION=""
+REGION="us-west1"
 
 # TODO 3: absolute path to your .env file. 
 # Cloud Run reads this at
 # deploy time to set GCP_PROJECT_ID, VERTEX_AI_PROJECT_ID,
 # SEARCH_ENGINE_ID, GCP_BUCKET_NAME and GCP_SERVICE_ACCOUNT_KEY 
 # inside the containers.
-ENV_FILE=""
+ENV_FILE="/Users/szphzz/github/dsai692_data_acquisition_2026/.env"
 
 # TODO 4: absolute path to your service account JSON key on your laptop
 # (the file GCP_SERVICE_ACCOUNT_KEY points at for local development).
-LOCAL_KEY_FILE=""
+LOCAL_KEY_FILE="/Users/szphzz/.ssh/dsai692-szphzz-b2adce44a079.json"
 
 # TODO 5: the ports your two Dockerfiles EXPOSE. 
 # These must match your Dockerfiles exactly.
-API_PORT=""
-WEBAPP_PORT=""
+API_PORT="8000"
+WEBAPP_PORT="8501"
 
 # ---------------------------------------------------------------------
 # Provided -- no need to change anything below this line.

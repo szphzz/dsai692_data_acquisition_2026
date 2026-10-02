@@ -73,9 +73,9 @@ gcloud secrets add-iam-policy-binding "$GCP_KEY_SECRET" \
 gcloud run deploy "$API_SERVICE" \
   --source FILL_IN_6 \
   --region "$REGION" \
-  --port=FILL_IN_7 \
+  --port="$API_PORT" \
   --allow-unauthenticated \
-  --env-vars-file=FILL_IN_8 \
+  --env-vars-file="$ENV_FILE" \
   --set-secrets="$SECRET_MOUNT_PATH=$GCP_KEY_SECRET:latest"
 
 # --env-vars-file just loaded GCP_SERVICE_ACCOUNT_KEY as the path on YOUR
@@ -85,7 +85,7 @@ gcloud run deploy "$API_SERVICE" \
 #          the mounted key?
 gcloud run services update "$API_SERVICE" \
   --region "$REGION" \
-  --update-env-vars=GCP_SERVICE_ACCOUNT_KEY=FILL_IN_9
+  --update-env-vars=GCP_SERVICE_ACCOUNT_KEY="$LOCAL_KEY_FILE"
 
 # =====================================================================
 # STEP 3 -- read back the API server's public URL (provided).
@@ -120,7 +120,7 @@ echo "$API_SERVICE deployed at $API_SERVER_URL"
 gcloud run deploy "$WEBAPP_SERVICE" \
   --source FILL_IN_10 \
   --region "$REGION" \
-  --port=FILL_IN_11 \
+  --port="$WEBAPP_PORT" \
   --allow-unauthenticated \
   --env-vars-file="$ENV_FILE" \
   --set-secrets="$SECRET_MOUNT_PATH=$GCP_KEY_SECRET:latest"
