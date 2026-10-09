@@ -9,5 +9,8 @@ with sync_playwright() as p:
 
     # Waiting for Elements
     # Wait Until the <main> appears
+    page.wait_for_selector("main")
 
     # Select Elements
+    # .query_selector() returns first
+

@@ -14,8 +14,7 @@ api_server_url = "http://127.0.0.1:8000"
 data = {
     "job_title": "Data Engineer",
     "company_dict": {"Anthropic": "anthropic.com/careers/jobs",
-                     "Google": "www.google.com/about/"
-                     "careers/applications/jobs",
+                     "Google": "www.google.com/about/careers/applications/jobs",
                      "OpenAI": "openai.com/careers"}
 }
 

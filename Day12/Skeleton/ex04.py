@@ -10,3 +10,11 @@ with sync_playwright() as p:
     page.goto("https://reddit.com")
 
     # Click the login button and enter id and password.
+    page.locator("#login-button").click()
+    page.locator("input[name='username']").fill("spchung@dons.usfca.edu")
+    page.locator("#login-username").click()
+    page.keyboard.insert_text("student@usfca.edu")
+    page.keyboard.press("Tab")
+    time.sleep(3)
+    page.keyboard.press("Tab")
+    page.keyboard.insert_text("p@ssW0rld")
