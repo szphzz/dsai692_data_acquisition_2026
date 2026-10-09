@@ -16,7 +16,9 @@ with sync_playwright() as p:
     page.wait_for_selector("article")  # Wait Until the <main> appears
 
     article = page.query_selector("article")  # Return a single <article>
-    print(article.inner_text())
+    print(f"inner_text() : {article.inner_text()}")
 
+    print(f"query_selector(): {page.query_selector("article")}")
+    print(f"query_selectors(): {page.query_selector_all("article")}")
     for elem in page.query_selector_all("article"):  # Return all <article>
         print(elem.inner_text(), end="\n------\n")

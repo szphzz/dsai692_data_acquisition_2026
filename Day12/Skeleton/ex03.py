@@ -6,6 +6,7 @@ with sync_playwright() as p:
     browser = p.chromium.launch(headless=False)
     context = browser.new_context()
     page = context.new_page()
+<<<<<<< HEAD
     page.goto("https://www.allrecipes.com")
 
     # Waiting for Elements
@@ -14,6 +15,14 @@ with sync_playwright() as p:
     # Choose the 3rd element
     page.locator('.feed [data-ordinal="3"]').click()
     time.sleep(3)
+=======
+    page.goto("https://www.allrecipes.com/")
+
+    # Waiting for Elements
+    page.wait_for_selector(".feed")  # Wait Until the class='feed' appears
+
+    # Choose the 3rd element
+>>>>>>> upstream/main
 
     # Wheel to go to 150 pxl, 1000 pxl
     page.mouse.wheel(150, 1000)

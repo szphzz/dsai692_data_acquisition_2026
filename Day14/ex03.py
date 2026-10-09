@@ -2,25 +2,24 @@ from dotenv import load_dotenv
 import os
 
 import streamlit as st
-import google.generativeai as genai
+from google import genai
 
 load_dotenv()
-
-model = genai.GenerativeModel("gemini-2.5-flash")
-genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
-chat = model.start_chat()
-
-st.set_page_config(page_title="Chatbot")
-st.title("Interactive Chatbot with Google GenAI")
+model_name = "gemini-3.5-flash"
+if "chat" not in st.session_state:
+    st.session_state.client = genai.Client(api_key=os.getenv('GEMINI_API_KEY'))
+    st.session_state.chat = st.session_state.client.chats.create(model=model_name)
+chat = st.session_state.chat
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
+st.set_page_config(page_title="Chatbot")
+st.title("Interactive Chatbot with Google GenAI")
 # Display existing messages
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
-
 
 prompt = st.chat_input("Ask me something...")
 if prompt:
@@ -36,7 +35,7 @@ if prompt:
         response_text = ""
 
         # Streaming from API
-        response = chat.send_message(prompt, stream=True)
+        response = chat.send_message_stream(prompt)
 
     for chunk in response:
         response_text += chunk.text

@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 import os
 
 import streamlit as st
-import google.generativeai as genai
+from google import genai
 
 from user_definition import *
 from job_posting import retrieve_data_from_gcs
@@ -11,7 +11,7 @@ load_dotenv()
 
 st.set_page_config(page_title="Chatbot")
 st.title("Job Assistant Chatbot")
-
+model_name = "gemini-3.5-flash"
 # This is for maintaining the chat history
 if "chat" not in st.session_state:
     gcs_data = retrieve_data_from_gcs(service_account_key=service_account_file_path,
@@ -24,14 +24,11 @@ if "chat" not in st.session_state:
     {gcs_data}. 
     Based on this information, help the user with their job search related questions.
     """
-    genai.configure(api_key=gemini_api_key)
-    model = genai.GenerativeModel("gemini-2.5-flash",
-                                  system_instruction=system_message)
+    st.session_state.client = genai.Client(api_key=os.getenv('GEMINI_API_KEY'))
+    st.session_state.chat = st.session_state.client.chats.create(model=model_name,
+                                                                 config={"system_instruction": system_message})                                               
+chat = st.session_state.chat
 
-    chat = model.start_chat(history=[])
-    st.session_state.chat = chat
-else:
-    chat = st.session_state.chat
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -57,7 +54,7 @@ if prompt:
         response_text = ""
 
         # Streaming from API
-        response = chat.send_message(prompt, stream=True)
+        response = chat.send_message_stream(prompt)
 
     for chunk in response:
         response_text += chunk.text

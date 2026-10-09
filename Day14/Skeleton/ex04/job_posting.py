@@ -46,7 +46,8 @@ def retrieve_data_from_gcs(service_account_key: str,
     job_titles = []
     company_dict = dict()
     for blob in blobs:
-        if blob.name.startswith(file_name_prefix):
+        if blob.name.startswith(file_name_prefix) \
+            and blob.name.endswith(".json"):
             blob_data = json.loads(blob.download_as_bytes())
             content += blob_data["results"]
             job_titles.append(blob_data["job_title"])
